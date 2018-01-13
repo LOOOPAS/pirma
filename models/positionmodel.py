@@ -128,6 +128,9 @@ class User(db.Model):
 
 
 
+
+user = User.find_by_name(faustas)
+print(user.password)
 #pozicija = Position('btc', 3.68, 13050.2)
 
 #print(pozicija.json())

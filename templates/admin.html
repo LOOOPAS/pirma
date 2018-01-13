@@ -1,0 +1,18 @@
+{% extends "index.html"%}
+{% block content %}
+  <form action="admin" method="post">
+    <label for="crypto_name"> Crypto ticker name lower case: </label>
+    <input type="text" name="crypto_name" value=""> <br>
+    <label for="crypto_amount"> Amount: </label>
+    <input type="number" step="0.0000001" name="crypto_amount" value=""> <br>
+    <label for="crypto_price"> Price: </label>
+    <input type="number" step="0.0000001" name="crypto_price" value=""> <br>
+    <label for="date"> Date if needed: </label>
+    <input type="date" name="date"> <br>
+
+    <input type="submit" name="submit" value="submit"> <br>
+    <input type="checkbox" name="buy_check" value="buy"> Buy <br>
+    <input type="checkbox" name="sell_check" value="sell">Sell
+
+  </form>
+{% endblock %}

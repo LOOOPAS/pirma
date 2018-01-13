@@ -1,0 +1,28 @@
+{% extends "index.html"%}
+{% block content %}
+<body>
+
+  <div class="container">
+
+    <form class="" action="pasirinkimas", method="post" >
+
+      <div class="table">
+        <label for="table">Positions</label>
+        {{ table | safe}}
+      </div>
+
+
+
+        <button type="submit" name="submit" value="operations" class="btn btn-default">Operations</button>
+        <button type="submit" name="submit" value="realized_positions" class="btn btn-default">Realized positions</button>
+        </form>
+
+
+
+
+
+
+  </div>
+
+</body>
+{% endblock %}

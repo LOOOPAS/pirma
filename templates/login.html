@@ -1,0 +1,17 @@
+{% extends "index.html"%}
+{% block content %}
+<div class="container login-page">
+  <form id="login-form" action="/login" method="post">
+    <div class="form-group">
+      <label for="name">Username</label>
+      <input type="text" name="name" id="name" class="form-control" placeholder="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" class="form-control" placeholder="password">
+    </div>
+    <button type="submit" name="submit" value="login" class="btn btn-default">Log In</button>
+    <button type="submit" name="submit" value="signin" class="btn btn-default">Sign In</button>
+  </form>
+</div>
+{% endblock %}

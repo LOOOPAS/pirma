@@ -124,13 +124,3 @@ class User(db.Model):
     @classmethod
     def find_by_name(cls, name):
         return cls.query.filter_by(name=name).first()
-
-
-
-
-
-user = User.find_by_name(faustas)
-print(user.password)
-#pozicija = Position('btc', 3.68, 13050.2)
-
-#print(pozicija.json())

@@ -32,7 +32,7 @@ def login():
         user = User.find_by_name(name)
         if user is not None and user.password == password and user.name != 'skirma':
             bandymeliai.update_current()
-            bookdata = pd.read_sql('book', 'postgres://ltpogxzhuksxtp:ec2082a42b945845f309a7cae8dc6bb6619c9774369d31b13a6')
+            bookdata = pd.read_sql('book', os.environ.get('DATABASE_URL'))
             bookdata = bookdata.set_index('id')
             return render_template('main.html', table=bookdata.to_html())
         elif user is not None and user.password == password and user.name == 'skirma':
@@ -46,7 +46,7 @@ def login():
                 user = User(name, password)
                 user.save_to_db()
                 bandymeliai.update_current()
-                bookdata = pd.read_sql('book', 'postgres://ltpogxzhuksxtp:ec2082a42b945845f309a7cae8dc6bb6619c9774369d31b13a6')
+                bookdata = pd.read_sql('book', os.environ.get('DATABASE_URL'))
                 bookdata = bookdata.set_index('id')
                 return render_template('login.html')
             else:
@@ -56,7 +56,7 @@ def login():
 def choose():
     if request.form['submit'] == 'view':
         bandymeliai.update_current()
-        bookdata = pd.read_sql('book', 'postgres://ltpogxzhuksxtp:ec2082a42b945845f309a7cae8dc6bb6619c9774369d31b13a6')
+        bookdata = pd.read_sql('book', os.environ.get('DATABASE_URL'))
         bookdata = bookdata.set_index('id')
         return render_template('main.html', table=bookdata.to_html())
     elif request.form['submit'] == 'admin':
@@ -125,13 +125,13 @@ def admin_action():
 @app.route('/pasirinkimas', methods=['POST'])
 def pasirinkimas():
     if request.form['submit'] == 'operations':
-        operdata = pd.read_sql('operations', 'postgres://ltpogxzhuksxtp:ec2082a42b945845f309a7cae8dc6bb6619c9774369d31b13a6')
+        operdata = pd.read_sql('operations', os.environ.get('DATABASE_URL'))
         operdata['time']=operdata['time'].dt.strftime('%Y/%m/%d %H:%M')
         operdata = operdata.iloc[::-1]
         operdata = operdata.set_index('id')
         return render_template('operations.html', table1=operdata.to_html())
     elif request.form['submit'] == 'realized_positions':
-        finishdata = pd.read_sql('finishedbook', 'postgres://ltpogxzhuksxtp:ec2082a42b945845f309a7cae8dc6bb6619c9774369d31b13a6')
+        finishdata = pd.read_sql('finishedbook', os.environ.get('DATABASE_URL'))
         finishdata['time'] = finishdata['time'].dt.strftime('%Y/%m/%d %H:%M')
         finishdata = finishdata.iloc[::-1]
         finishdata = finishdata.set_index('id')
